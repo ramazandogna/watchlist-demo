@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { ResultCard } from "./ResultCard";
 
 export const Add = () => {
   const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
   const onChange = (e) => {
     e.preventDefault();
     setQuery(e.target.value);
@@ -11,7 +13,11 @@ export const Add = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (!data.errors) {
+          setResults(data.results);
+        } else {
+          setResults([]);
+        }
       });
   };
 
@@ -27,6 +33,16 @@ export const Add = () => {
               onChange={onChange}
             />
           </div>
+
+          {results.length > 0 && (
+            <ul className="results">
+              {results.map((movie) => (
+                <li key={movie.id}>
+                  <ResultCard movie={movie} />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>
