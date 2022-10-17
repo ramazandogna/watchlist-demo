@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect } from "react";
-import { AppReducer } from "./AppReducer";
+import AppReducer from "./AppReducer";
 
 // our initial state
 const initialState = {
@@ -14,8 +14,17 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = (props) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
+  // actions
+  const addMovieToWatchlist = (movie) => {
+    dispatch({ type: "ADD_MOVIE_TO_WATCHLIST", payload: movie });
+  };
+
   <GlobalContext.Provider
-    value={{ watchlist: state.watchlist, watched: state.watched }}
+    value={{
+      watchlist: state.watchlist,
+      watched: state.watched,
+      addMovieToWatchlist,
+    }}
   >
     {props.children}
   </GlobalContext.Provider>;
