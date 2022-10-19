@@ -15,7 +15,7 @@ const initialState = {
 export const GlobalContext = createContext(initialState);
 
 // provider components here
-export const GlobalProvider = (props) => {
+export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   useEffect(() => {
@@ -36,6 +36,14 @@ export const GlobalProvider = (props) => {
     dispatch({ type: "ADD_MOVIE_TO_WATCHED", payload: movie });
   };
 
+  const moveToWatchlist = (movie) => {
+    dispatch({ type: "MOVE_TO_WATCHLIST", payload: movie });
+  };
+
+  const removeFromWatched = (movie) => {
+    dispatch({ type: "REMOVE_FROM_WATCHED", payload: movie });
+  };
+
   <GlobalContext.Provider
     value={{
       watchlist: state.watchlist,
@@ -43,8 +51,10 @@ export const GlobalProvider = (props) => {
       addMovieToWatchlist,
       removeMovieFromWatctlist,
       addMovieToWatched,
+      removeFromWatched,
+      moveToWatchlist,
     }}
   >
-    {props.children}
+    {children}
   </GlobalContext.Provider>;
 };

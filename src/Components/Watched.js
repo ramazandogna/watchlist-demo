@@ -3,12 +3,15 @@ import { GlobalContext } from "../Context/GlobalState";
 import { MovieCard } from "./MovieCard";
 
 export const Watched = () => {
-  const { Watched } = useContext(GlobalContext);
+  const { catched } = useContext(GlobalContext);
   return (
     <div className="movie-page">
       <div className="container">
         <div className="header">
           <h1 className="heading">Watched 🔱</h1>
+          <span className="count-pill">
+            {catched.length ? "Movie" : "Movies"}
+          </span>
         </div>
 
         {Watched.length > 0 ? (
