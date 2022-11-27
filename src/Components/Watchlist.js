@@ -1,30 +1,28 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../Context/GlobalState";
+import { GlobalContext } from "../context/GlobalState";
 import { MovieCard } from "./MovieCard";
 
 export const Watchlist = () => {
   const { watchlist } = useContext(GlobalContext);
   return (
-    <div className="movie-page">
-      <div className="container">
-        <div className="header">
-          <h1 className="heading">My Watchlist 📌</h1>
-          <span className="count-pill">
-            {watchlist.length ? "Movie" : "Movies"}
-          </span>
-        </div>
-
-        {Watchlist.length > 0 ? (
-          <div className="movie-grid">
-            {Watchlist.map((movie) => (
-              <MovieCard movie={movie} type="watchlist" />
-            ))}
+    <div>
+      <div className="movie-page">
+        <div className="container">
+          <div className="header">
+            <h1 className="heading">My Watchlist</h1>
           </div>
-        ) : (
-          <h2 className="no-movie">
-            No movies in your list 😢, Y can add some pls 🥹
-          </h2>
-        )}
+          {watchlist.length > 0 ? (
+            <div className="movie-grid">
+              {watchlist.map((movie) => (
+                <MovieCard movie={movie} type="watchlish" />
+              ))}
+            </div>
+          ) : (
+            <h2 className="no-movies">
+              There is no movie here, you have to add some
+            √</h2>
+          )}
+        </div>
       </div>
     </div>
   );

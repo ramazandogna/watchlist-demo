@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 export const Header = () => {
   return (
     <header>
-      <div className="container">
+      <did className="container">
         <div className="inner-content">
           <div className="brand">
-            <Link to="/">Watchlist</Link>
+            <Link to="/">WatchList</Link>
           </div>
           <ul className="nav-links">
             <li>
@@ -23,7 +23,7 @@ export const Header = () => {
             </li>
           </ul>
         </div>
-      </div>
+      </did>
     </header>
   );
 };

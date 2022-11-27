@@ -1,7 +1,8 @@
 import React, { createContext, useReducer, useEffect } from "react";
 import AppReducer from "./AppReducer";
 
-// our initial state
+//initial state kısmı
+
 const initialState = {
   watchlist: localStorage.getItem("watchlist")
     ? JSON.parse(localStorage.getItem("watchlist"))
@@ -11,11 +12,13 @@ const initialState = {
     : [],
 };
 
-// create context
+//create context kısmı
+
 export const GlobalContext = createContext(initialState);
 
-// provider components here
-export const GlobalProvider = ({ children }) => {
+//provider componenetler
+
+export const GlobalProvider = (props) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   useEffect(() => {
@@ -24,37 +27,20 @@ export const GlobalProvider = ({ children }) => {
   }, [state]);
 
   // actions
+
   const addMovieToWatchlist = (movie) => {
     dispatch({ type: "ADD_MOVIE_TO_WATCHLIST", payload: movie });
   };
 
-  const removeMovieFromWatctlist = (id) => {
-    dispatch({ type: "REMOVE_MOVIE_FROM_WATCHLIST", payload: id });
-  };
-
-  const addMovieToWatched = (movie) => {
-    dispatch({ type: "ADD_MOVIE_TO_WATCHED", payload: movie });
-  };
-
-  const moveToWatchlist = (movie) => {
-    dispatch({ type: "MOVE_TO_WATCHLIST", payload: movie });
-  };
-
-  const removeFromWatched = (movie) => {
-    dispatch({ type: "REMOVE_FROM_WATCHED", payload: movie });
-  };
-
-  <GlobalContext.Provider
-    value={{
-      watchlist: state.watchlist,
-      watched: state.watched,
-      addMovieToWatchlist,
-      removeMovieFromWatctlist,
-      addMovieToWatched,
-      removeFromWatched,
-      moveToWatchlist,
-    }}
-  >
-    {children}
-  </GlobalContext.Provider>;
+  return (
+    <GlobalContext.Provider
+      value={{
+        watchlist: state.watchlist,
+        watched: state.watched,
+        addMovieToWatchlist,
+      }}
+    >
+      {props.children}
+    </GlobalContext.Provider>
+  );
 };

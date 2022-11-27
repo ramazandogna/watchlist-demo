@@ -1,31 +1,9 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../Context/GlobalState";
-import { MovieCard } from "./MovieCard";
+import React from "react";
 
 export const Watched = () => {
-  const { catched } = useContext(GlobalContext);
   return (
-    <div className="movie-page">
-      <div className="container">
-        <div className="header">
-          <h1 className="heading">Watched 🔱</h1>
-          <span className="count-pill">
-            {catched.length ? "Movie" : "Movies"}
-          </span>
-        </div>
-
-        {Watched.length > 0 ? (
-          <div className="movie-grid">
-            {Watched.map((movie) => (
-              <MovieCard movie={movie} type="watched" />
-            ))}
-          </div>
-        ) : (
-          <h2 className="no-movie">
-            No movies in your list 😢, Y can add some pls 🥹
-          </h2>
-        )}
-      </div>
+    <div>
+      <h1>İzlenmiş filmler</h1>
     </div>
   );
 };

@@ -1,32 +1,28 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Routes,
-  BrowserRouter,
-} from "react-router-dom";
-import { Header } from "./Components/Header";
-import { Add } from "./Components/Add";
-import { Watched } from "./Components/Watched";
-import { Watchlist } from "./Components/Watchlist";
-import "./App.css";
-import "./lib/font-awesome/css/all.min.css";
-import { GlobalProvider } from "./Context/GlobalState";
+import './App.css';
+import './lib/font-awesome/css/all.min.css';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { Add } from './components/Add';
+import { GlobalProvider } from './context/GlobalState';
+import { Header } from './components/Header';
+import React from 'react';
+import { Watched } from './components/Watched';
+import { Watchlist } from './components/Watchlist';
 
 function App() {
-  return (
-    <GlobalProvider>
-      <BrowserRouter>
-        {" "}
-        <Header />
-        <Routes>
-          <Route path="/" element={<Watchlist />}></Route>
-          <Route path="/watched" element={<Watched />}></Route>
-          <Route path="/add" element={<Add />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </GlobalProvider>
-  );
+   return (
+      <div className="App">
+         <BrowserRouter>
+            <Header />
+            <Routes>
+               <Route path="/" element={<Watchlist />}></Route>
+               <Route path="/watched" element={<Watched />}></Route>
+               <Route path="/add" element={<Add />}></Route>
+            </Routes>
+         </BrowserRouter>
+      </div>
+   );
 }
 
 export default App;
