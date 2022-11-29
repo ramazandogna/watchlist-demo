@@ -13,14 +13,16 @@ import { Watchlist } from './components/Watchlist';
 function App() {
    return (
       <div className="App">
-         <BrowserRouter>
-            <Header />
-            <Routes>
-               <Route path="/" element={<Watchlist />}></Route>
-               <Route path="/watched" element={<Watched />}></Route>
-               <Route path="/add" element={<Add />}></Route>
-            </Routes>
-         </BrowserRouter>
+         <GlobalProvider>
+            <BrowserRouter>
+               <Header />
+               <Routes>
+                  <Route path="/" element={<Watchlist />}></Route>
+                  <Route path="/watched" element={<Watched />}></Route>
+                  <Route path="/add" element={<Add />}></Route>
+               </Routes>
+            </BrowserRouter>
+         </GlobalProvider>
       </div>
    );
 }
